@@ -8,6 +8,9 @@ key_shoot = mouse_check_button(mb_left)
 inputdir = point_direction(0,0,key_right-key_left,key_down-key_up);
 inputmag = (key_right-key_left != 0) or (key_down-key_up != 0);
 
+
+aim_dir =  point_direction(x,y,mouse_x,mouse_y)
+
 var 
 vx, vy,
 ax, ay;
@@ -37,7 +40,12 @@ if key_shoot and shoot_del <= 0
 {
 	shoot_del = shoot_del_max
 	
-	instance_create_layer(x,y,"Instances",oBullet)
+	with instance_create_layer(x+lengthdir_x(16,aim_dir),y+lengthdir_y(16,aim_dir),"Instances",oBullet)
+	{
+		dmg = 1
+		spd = 15
+		dir = other.aim_dir+random_range(-other.accuracy,other.accuracy)
+	}
 }
 		
 shoot_del = approach(shoot_del,0,1)
