@@ -1,5 +1,5 @@
-accel = 1
-decel = 9
+accel = .3
+decel = 12
 
 old_x = x
 old_y = y

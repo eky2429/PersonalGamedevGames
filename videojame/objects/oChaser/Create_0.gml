@@ -12,8 +12,8 @@ fy = 0
 x_calc = 0
 y_calc = 0
 
-accel = 0.2
-decel = 70
+accel = 0.1
+decel = 60
 
 mass = 1
 

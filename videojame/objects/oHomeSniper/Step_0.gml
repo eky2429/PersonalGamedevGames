@@ -1,9 +1,16 @@
 image_angle = shoot_dir;
 
+if instance_exists(parent)
+{
+	angle_to_parent = point_direction(parent.x,parent.y,x,y)
+}
+
+shoot_dir = clamp(shoot_dir,angle_to_parent-45,angle_to_parent+45)
+
 if instance_exists(target)
 {
 	shoot_dir = point_direction(x,y,target.x,target.y)
-	
+	shoot_dir = clamp(shoot_dir,angle_to_parent-45,angle_to_parent+45)
 	if shoot_del <= 0
 	{
 		shoot_del = shoot_del_max

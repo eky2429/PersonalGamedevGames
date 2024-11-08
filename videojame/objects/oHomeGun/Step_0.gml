@@ -1,10 +1,20 @@
 image_angle = shoot_dir;
 
+if instance_exists(parent)
+{
+	angle_to_parent = point_direction(parent.x,parent.y,x,y)
+}
+
+shoot_dir = clamp(shoot_dir,angle_to_parent-aim_limit,angle_to_parent+aim_limit)
+
 if instance_exists(target)
 {
-	shoot_dir = point_direction(x,y,target.x,target.y)
+	aim_dir = point_direction(x,y,target.x,target.y)
 	
-	if shoot_del <= 0
+	shoot_dir = angle_lerp(shoot_dir,aim_dir,0.05)
+	shoot_dir = clamp(shoot_dir,angle_to_parent-aim_limit,angle_to_parent+aim_limit)
+	
+	if shoot_del <= 0 and abs(angle_difference(aim_dir,shoot_dir)) < 30
 	{
 		shoot_del = shoot_del_max
 		bullet_count += 1
@@ -38,5 +48,6 @@ if target = noone
 		target = ds_list_find_value(targ_list,0)
 	}
 }
+
 
 shoot_del = approach(shoot_del,0,1)
