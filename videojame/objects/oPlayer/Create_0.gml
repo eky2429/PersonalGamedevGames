@@ -22,3 +22,7 @@ shoot_del = 0
 shoot_del_max = 8
 
 accuracy = 6
+
+flash = 0
+
+hp = 10

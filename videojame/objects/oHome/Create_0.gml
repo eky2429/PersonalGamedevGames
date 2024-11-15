@@ -25,3 +25,16 @@ for(var i = 0; i < weapon_list_size; i++;)
 	
 	weapon_id.parent = id
 }
+
+sheild_health = 10
+
+sheild = instance_create_depth(x,y,depth-10,oSheild)
+
+sheild_raidus = 0
+sheild_raidus_max = 64
+
+with sheild
+{
+	hp = other.sheild_health
+	owner = other.id
+}
