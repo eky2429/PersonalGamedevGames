@@ -37,7 +37,7 @@ fy = 0
 x_calc = vx + ax - vx/decel
 y_calc = vy + ay - vy/decel          
 				
-				
+
 if key_shoot and shoot_del <= 0
 {
 	shoot_del = shoot_del_max
