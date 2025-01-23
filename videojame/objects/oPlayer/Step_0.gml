@@ -1,3 +1,4 @@
+//Exit when health is less than 0
 if hp <= 0	exit;
 
 key_up = keyboard_check(ord("W")) // keyboard_check(vk_up);
@@ -11,6 +12,11 @@ inputdir = point_direction(0,0,key_right-key_left,key_down-key_up);
 inputmag = (key_right-key_left != 0) or (key_down-key_up != 0);
 
 
+if inputmag != 0
+{
+	fuel = approach(fuel, 0,.1)
+}
+
 aim_dir =  point_direction(x,y,mouse_x,mouse_y)
 
 var 
@@ -23,10 +29,12 @@ vy = y-old_y
 old_x = x
 old_y = y
 
-	
-fx += lengthdir_x(inputmag * accel, inputdir)
-fy += lengthdir_y(inputmag * accel, inputdir)
 
+if fuel > 0
+{
+	fx += lengthdir_x(inputmag * accel, inputdir)
+	fy += lengthdir_y(inputmag * accel, inputdir)
+}
 
 ax = fx/mass
 ay = fy/mass
@@ -41,6 +49,8 @@ y_calc = vy + ay - vy/decel
 if key_shoot and shoot_del <= 0
 {
 	shoot_del = shoot_del_max
+	
+	//fx += lengthdir_x(2, aim_dir * 100)
 	
 	with instance_create_layer(x+lengthdir_x(16,aim_dir),y+lengthdir_y(16,aim_dir),"Instances",oBullet)
 	{
